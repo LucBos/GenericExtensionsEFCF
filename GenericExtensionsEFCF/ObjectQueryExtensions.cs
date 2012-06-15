@@ -15,7 +15,11 @@ namespace GenericExtensionsEFCF
             var projectedType = typeof(TProjected);
             var properties = projectedType.GetProperties(BindingFlags.Public | BindingFlags.Instance);
 
-            return dbDataRecords.Select(dbDataRecord => MapDataRecordToProperties<TProjected>(dbDataRecord, properties)).ToList();
+            foreach (var dbDataRecord in dbDataRecords)
+            {
+                var entity = MapDataRecordToProperties<TProjected>(dbDataRecord, properties);
+                yield return entity;
+            }
         }
 
         private static TProjected MapDataRecordToProperties<TProjected>(IDataRecord dbDataRecord, IEnumerable<PropertyInfo> properties)

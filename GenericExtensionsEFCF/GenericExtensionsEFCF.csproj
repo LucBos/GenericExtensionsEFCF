@@ -51,6 +51,7 @@
     <Compile Include="IQueryEntity.cs" />
     <Compile Include="IQueryValue.cs" />
     <Compile Include="IStoredProcedure.cs" />
+    <Compile Include="ObjectQueryExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryEntity.cs" />
     <Compile Include="QueryValue.cs" />
