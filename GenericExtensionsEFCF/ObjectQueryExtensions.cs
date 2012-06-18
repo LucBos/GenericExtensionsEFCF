@@ -28,7 +28,14 @@ namespace GenericExtensionsEFCF
             var projectedEntity = new TProjected();
             foreach (var propertyInfo in properties)
             {
-                propertyInfo.SetValue(projectedEntity, dbDataRecord[propertyInfo.Name], new object[] { });
+                var value = dbDataRecord[propertyInfo.Name];
+
+                if (value is System.DBNull)
+                {
+                    value = null;
+                }
+
+                propertyInfo.SetValue(projectedEntity, value, new object[] { });
             }
             return projectedEntity;
         }
