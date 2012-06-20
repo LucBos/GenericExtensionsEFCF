@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Data.Objects;
@@ -30,12 +31,15 @@ namespace GenericExtensionsEFCF
             {
                 var value = dbDataRecord[propertyInfo.Name];
 
-                if (value is System.DBNull)
+                if (value is DBNull)
                 {
                     value = null;
                 }
 
-                propertyInfo.SetValue(projectedEntity, value, new object[] { });
+                var propertyType = Nullable.GetUnderlyingType(propertyInfo.PropertyType) ?? propertyInfo.PropertyType;
+                var newValue = value == null ? null : Convert.ChangeType(value, propertyType);
+
+                propertyInfo.SetValue(projectedEntity, newValue, new object[] { });
             }
             return projectedEntity;
         }
