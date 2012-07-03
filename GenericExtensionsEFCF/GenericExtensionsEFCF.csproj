@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="DatabaseExtensions.cs" />
     <Compile Include="DbContextExtensions.cs" />
+    <Compile Include="DbQueryExtensions.cs" />
     <Compile Include="IQueryEntity.cs" />
     <Compile Include="IQueryValue.cs" />
     <Compile Include="IStoredProcedure.cs" />
